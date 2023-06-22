@@ -1,0 +1,27 @@
+{
+  "name": "-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maoleshko/-backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maoleshko/-backend/issues"
+  },
+  "homepage": "https://github.com/maoleshko/-backend#readme",
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "node-http": "^0.0.5",
+    "nodemon": "^2.0.22",
+    "path": "^0.12.7"
+  }
+}
