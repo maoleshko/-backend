@@ -1,5 +1,5 @@
 const http = require("http");
-const getUsers = require("./modules/users");
+const getUser = require("./modules/user");
 
 const hostname = "127.0.0.1";
 const port = 3003;
@@ -20,11 +20,11 @@ const server = http.createServer((request, response) => {
 
   for (let [key, value] of searchParams.entries()) {
     switch (key) {
-      case "users":
+      case "user":
         response.statusCode = 200;
         response.statusMessage = "OK";
         response.setHeader("Content-Type", "application/json");
-        response.write(getUsers());
+        response.write(getUser());
         response.end();
         break;
       case "hello":
