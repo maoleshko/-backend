@@ -9,9 +9,9 @@ const {
 } = require('../controllers/books')
 
 router.get('/', getBooks)
-router.get('/books/:book_id', getBook)
+router.get('/:book_id', getBook)
 router.post('/', createBook)
-router.patch('/books/:book_id', updateBook)
-router.delete('/books/:book_id', deleteBook)
+router.patch('/:book_id', updateBook)
+router.delete('/:book_id', deleteBook)
 
 module.exports = router

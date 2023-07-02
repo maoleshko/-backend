@@ -1,21 +1,35 @@
-const express = require('express');
-const dotenv = require('dotenv');
+const express = require('express')
 
-dotenv.config();
-const { PORT = 3000, API_URL = 'http://localhost' } = process.env;
+const dotenv = require('dotenv')
+const cors = require('cors')
+const mongoose = require('mongoose')
+const bodyParser = require('body-parser')
+const routes = require('./routes')
 
-const app = express();
+dotenv.config()
 
-app.get('/', (request, response) => {
-    response.status(200);
-    response.send("Hello, World!");
-});
+const {
+  PORT = 3005,
+  API_URL = 'http://127.0.0.1',
+  //library/mongo/backend  тут должно быть название базы данных которое создала в docker 
+  MONGO_URL = 'mongodb://127.0.0.1:27017/backend',
+} = process.env
 
-app.post('/', (request, response) => {
-  response.status(200);
-  response.send("Hello from POST");
-});
+mongoose
+  .connect(MONGO_URL)
+  .then(() => console.log('MongoDB connected'))
+  .catch((error) => console.log(error))
+
+mongoose.connection.on('error', (error) => {
+  console.log(error)
+})
+
+const app = express()
+
+app.use(cors())
+app.use(bodyParser.json())
+app.use('/', routes)
 
 app.listen(PORT, () => {
-    console.log('Ссылка на сервер: ${API_URL}:${PORT}');
-});
+  console.log(`Сервер запущен по адресу ${API_URL}:${PORT}`)
+})
